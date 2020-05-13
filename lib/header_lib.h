@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2017
-** lib
-** File description:
-** array
-*/
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
