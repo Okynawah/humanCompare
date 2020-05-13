@@ -1,3 +1,2 @@
-
 all:
-	gcc main.c -L../my_lib/include -l_global -g
+	gcc main.c -L./lib -l_global -g
