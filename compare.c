@@ -37,6 +37,9 @@ int hcmp(struct params *t, char *str1, char *str2)
   sl1 = my_strlen(str1);
   sl2 = my_strlen(str2);
 
+  str1 = lower_case(str1);
+  str2 = lower_case(str2);
+
   for (unsigned short i = 0, j = 0; i < sl1 || j < sl2; i++, j++) {
 
     do {
@@ -52,7 +55,6 @@ int hcmp(struct params *t, char *str1, char *str2)
       }
       if (t->doublel == 1)
       {
-        printf("oui");
         if (s1 == str1[i+1] && s1 != str2[j+1]) {++i; statut+=1;};
         if (s2 == str2[j+1] && s2 != str1[i+1]) {++j; statut+=1;};
       }
@@ -72,7 +74,7 @@ int hcmp(struct params *t, char *str1, char *str2)
 int main()
 {
   char *str1 = "hello";//default
-  char *str2 = "hello";
+  char *str2 = "heLo";
   struct params *t = malloc(sizeof(struct params));
   t->dashsensitive = 1;
   t->spacesensitive = 1;
