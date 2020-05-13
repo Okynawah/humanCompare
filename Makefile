@@ -1,2 +1,3 @@
+
 all:
-	gcc main.c -L./lib -l_global -g
+	gcc compare.c -L./lib -l_global -g
