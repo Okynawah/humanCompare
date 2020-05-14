@@ -57,3 +57,4 @@ char *cut_from(char *str, int until, fs_t *buff);
 int end_by(char *source, char *pattern);
 int my_strlen_alphabetic(char *);
 int is_calc(char *str);
+char *lower_case(char *str);
