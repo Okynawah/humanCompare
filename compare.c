@@ -45,13 +45,13 @@ int hcmp(struct params *t, char *str1, char *str2)
       s2 = str2[j];
       statut = 0;
 
-      if (t->spacesensitive == 0) {
+      if (statut == 0 && t->spacesensitive == 0) {
         if (hcmp_check_space(s2)) {++j; statut+=1;};
       }
-      if (t->dashsensitive == 0) {
+      if (statut == 0 && t->dashsensitive == 0) {
         if (hcmp_check_dash(s2)) {++j; statut+=1;};
       }
-      if (t->doublel == 0)
+      if (statut == 0 && t->doublel == 0)
       {
         if (s1 == str1[i+1] && s1 != str2[j+1]) {++i; statut+=1;};
         if (s2 == str2[j+1] && s2 != str1[i+1]) {++j; statut+=1;};
@@ -69,8 +69,8 @@ int hcmp(struct params *t, char *str1, char *str2)
 
 int main()
 {
-  char *str1 = "hello";
-  char *str2 = "heLo";
+  char *str1 = "helloll";
+  char *str2 = "he-l-ol";
   struct params *t = malloc(sizeof(struct params));
   
   t->dashsensitive = 0;
