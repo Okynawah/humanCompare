@@ -4,7 +4,6 @@
 struct params {
   unsigned short doublel : 1;
   unsigned short nberrortotal;
-  unsigned short nberrorfollowing;
   unsigned short spacesensitive : 1;
   unsigned short dashsensitive : 1;
 };
@@ -19,11 +18,12 @@ unsigned short hcmp_check_dash(char c)
   return (c == '-') ? 1 : 0;
 }
 
-void hcmp_clean(struct params t)
+void hcmp_clean(struct params t, int tlen)
 {
-  t.doublel = (t.doublel != 1 && t.doublel != 0) ? 0 : t.doublel;
-  t.spacesensitive = (t.spacesensitive != 1 && t.spacesensitive != 0) ? 0 : t.spacesensitive;
-  t.dashsensitive = (t.dashsensitive != 1 && t.dashsensitive != 0) ? 0 : t.dashsensitive;
+  t.doublel = (t.doublel != 1 && t.doublel != 0) ? 1 : t.doublel;
+  t.spacesensitive = (t.spacesensitive != 1 && t.spacesensitive != 0) ? 1 : t.spacesensitive;
+  t.dashsensitive = (t.dashsensitive != 1 && t.dashsensitive != 0) ? 1 : t.dashsensitive;
+  t.nberrortotal = (t.nberrortotal < tlen && t.nberrortotal > 0) ? t.nberrortotal : tlen;
 }
 
 int hcmp(struct params *t, char *str1, char *str2)
@@ -32,11 +32,10 @@ int hcmp(struct params *t, char *str1, char *str2)
   int sl1, sl2;
   unsigned short statut = 0;
   unsigned short proximity = 0;
-  unsigned short followingerrors = 0;
 
-  hcmp_clean(*t);
   sl1 = my_strlen(str1);
   sl2 = my_strlen(str2);
+  hcmp_clean(*t, (sl1 > sl2) ? sl1 : sl2);
   str1 = lower_case(str1);
   str2 = lower_case(str2);
 
