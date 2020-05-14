@@ -1,3 +1,2 @@
-
 all:
-	gcc compare.c -L./lib -l_global -g
+	gcc compare.c lib/*.c -g -Wall

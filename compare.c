@@ -1,4 +1,5 @@
 #include "header.h"
+#include <stdio.h>
 
 struct params {
   unsigned short doublel : 1;
